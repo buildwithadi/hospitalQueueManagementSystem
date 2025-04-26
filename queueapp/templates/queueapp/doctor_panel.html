@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Doctor Panel</title>
+</head>
+<body>
+    <h1>Doctor Panel - Patient List</h1>
+    <table border="1">
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>Issue</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for patient in patients %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.age }}</td>
+                <td>{{ patient.get_gender_display }}</td>
+                <td>{{ patient.blood_group }}</td>
+                <td>{{ patient.issue }}</td>
+                <td>{{ patient.get_status_display }}</td>
+                <td>
+                    <form method="POST" action="{% url 'mark_treated' patient.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Mark as Treated</button>
+                    </form>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="8">No patients available.</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{% url 'receptionist' %}">Back to Receptionist</a>
+</body>
+</html>
