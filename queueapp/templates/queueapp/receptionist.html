@@ -1,17 +1,139 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Receptionist Panel</title>
+    <title>Add Patient</title>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selects = document.querySelectorAll('select');
+    
+            selects.forEach(select => {
+                select.addEventListener('change', function() {
+                    if (this.value === "") {
+                        this.style.borderColor = '#ff6b6b'; // Red border
+                        this.style.backgroundColor = '#ffecec'; // Light red background
+                    } else {
+                        this.style.borderColor = '#28a745'; // Green border
+                        this.style.backgroundColor = '#e8f5e9'; // Light green background
+                    }
+                });
+    
+                // Initialize colors on page load
+                if (select.value === "") {
+                    select.style.borderColor = '#ff6b6b';
+                    select.style.backgroundColor = '#ffecec';
+                } else {
+                    select.style.borderColor = '#28a745';
+                    select.style.backgroundColor = '#e8f5e9';
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            /* Linear gradient background */
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 16px;
+        transition: transform 0.3s ease; /* Add transition here too */
+    }
+
+    input:hover, select:hover, textarea:hover {
+        transform: scale(1.05);
+    }
+        /* If input is empty (placeholder is showing) */
+        input:placeholder-shown, textarea:placeholder-shown {
+        border-color: #ff6b6b; /* Red border when empty */
+    }
+
+    /* If input has some value */
+    input:not(:placeholder-shown), textarea:not(:placeholder-shown) {
+        border-color: #28a745; /* Green border when filled */
+    }
+
+    input:hover, select:hover, textarea:hover {
+        transform: scale(1.05);
+    }
+
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #138496;
+        }
+    </style>
 </head>
 <body>
+
+<div>
     <h1>Add Patient</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Patient</button>
     </form>
-    <br>
-    <a href="{% url 'patient_panel' %}">Go to Patient Panel</a><br>
+    <a href="{% url 'patient_panel' %}">Go to Patient Panel</a>
     <a href="{% url 'doctor_panel' %}">Go to Doctor Panel</a>
+</div>
+
 </body>
 </html>

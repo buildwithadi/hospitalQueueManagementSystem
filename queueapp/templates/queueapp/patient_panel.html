@@ -2,33 +2,95 @@
 <html>
 <head>
     <title>Patient Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            min-height: 100vh;
+            /* Linear gradient background */
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #6c63ff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            display: block;
+            width: fit-content;
+            margin: 30px auto;
+            padding: 10px 20px;
+            background-color: #17a2b8;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        a:hover {
+            background-color: #138496;
+        }
+    </style>
 </head>
 <body>
     <h1>Patient Queue</h1>
-    <!-- patient_panel.html -->
 
-<table border="1">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Status</th>
-      <th>Priority</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for patient in patients %}
-      <tr>
-        <td>{{ patient.name }}</td>
-        <td>{{ patient.age }}</td>
-        <td>{{ patient.status }}</td>
-        <td>{{ patient.priority_score }}</td>
-      </tr>
-    {% endfor %}
-  </tbody>
-</table>
-  
-    <br>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Status</th>
+                <th>Priority</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.status }}</td>
+                    <td>{{ patient.priority_score }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <a href="{% url 'receptionist' %}">Back to Receptionist</a>
 </body>
 </html>
