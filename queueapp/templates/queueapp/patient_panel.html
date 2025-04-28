@@ -65,6 +65,58 @@
         a:hover {
             background-color: #138496;
         }
+
+            #chatbot-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+                text-align: center;
+                line-height: 60px;
+                cursor: pointer;
+                z-index: 999;
+            }
+            
+            #chatbot-popup {
+                position: fixed;
+                bottom: 90px;
+                right: 20px;
+                width: 300px;
+                height: 400px;
+                background: white;
+                border: 1px solid #ccc;
+                display: flex;
+                flex-direction: column;
+                z-index: 999;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+            
+            #chatbot-header {
+                background: #007bff;
+                color: white;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            #chatbot-messages {
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
+            }
+            
+            #chatbot-input {
+                border: none;
+                border-top: 1px solid #ccc;
+                padding: 10px;
+                width: 100%;
+            }            
     </style>
 </head>
 <body>
@@ -91,6 +143,74 @@
         </tbody>
     </table>
 
+    <!-- Floating Chatbot Button -->
+<div id="chatbot-button" onclick="toggleChatbot()">💬</div>
+
+<!-- Chatbot Popup -->
+<div id="chatbot-popup" style="display: none;">
+    <div id="chatbot-header">
+        <span>Chat with AI 🤖</span>
+        <button onclick="toggleChatbot()">X</button>
+    </div>
+    <div id="chatbot-messages"></div>
+    <input type="text" id="chatbot-input" placeholder="Ask something..." onkeydown="if(event.key==='Enter'){sendMessage();}">
+</div>
+
+
     <a href="{% url 'receptionist' %}">Back to Receptionist</a>
 </body>
+<script>
+    function toggleChatbot() {
+        var popup = document.getElementById('chatbot-popup');
+        popup.style.display = popup.style.display === 'none' ? 'flex' : 'none';
+    }
+    
+    function sendMessage() {
+        var input = document.getElementById('chatbot-input');
+        var message = input.value.trim();
+        if (!message) return;
+        
+        // Show user's message
+        var messages = document.getElementById('chatbot-messages');
+        var userMessage = document.createElement('div');
+        userMessage.textContent = "You: " + message;
+        messages.appendChild(userMessage);
+    
+        input.value = '';
+    
+        // Send to Django backend
+        fetch('/chatbot/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')
+            },
+            body: JSON.stringify({message: message})
+        })
+        .then(response => response.json())
+        .then(data => {
+            var botMessage = document.createElement('div');
+            botMessage.textContent = "Bot: " + data.reply;
+            messages.appendChild(botMessage);
+            messages.scrollTop = messages.scrollHeight;
+        });
+    }
+    
+    // CSRF token function
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    </script>
+    
 </html>

@@ -62,3 +62,51 @@ def get_patient_priority(patient):
     return 3
 
 
+import json
+import requests
+from django.http import JsonResponse
+
+def chatbot_api(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        user_message = data.get('message', '')
+
+        # Retrieve chat history from session, or start empty
+        chat_history = request.session.get('chat_history', [])
+
+        # Add the new user message to history
+        chat_history.append({'role': 'user', 'content': user_message})
+
+        # Keep only the last 5 messages
+        chat_history = chat_history[-5:]
+
+        # Create DeepSeek API payload
+        payload = {
+            "model": "deepseek-chat",
+            "messages": [
+                {"role": "system", "content": "Reply in less than 20 words. Be very concise and clear."}
+            ] + chat_history
+        }
+
+        # Call DeepSeek API
+        response = requests.post(
+            'https://api.deepseek.com/v1/chat/completions',
+            headers={
+                'Authorization': 'Bearer sk-9458b6f75df44a42920f3435d03e7423',
+                'Content-Type': 'application/json',
+            },
+            json=payload
+        )
+
+        reply_data = response.json()
+        bot_reply = reply_data['choices'][0]['message']['content']
+
+        # Add the bot's reply to history
+        chat_history.append({'role': 'assistant', 'content': bot_reply})
+        chat_history = chat_history[-5:]  # Keep only last 5 again
+
+        # Save updated history back to session
+        request.session['chat_history'] = chat_history
+
+        return JsonResponse({'reply': bot_reply})
+

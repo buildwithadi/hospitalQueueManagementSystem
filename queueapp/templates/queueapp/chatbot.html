@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chatbot</title>
+</head>
+<body>
+    <h1>Ask the AI!</h1>
+
+    <div id="chat-box" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:scroll;">
+        <!-- Messages will appear here -->
+    </div>
+
+    <input type="text" id="user-input" placeholder="Type your message..." style="width:80%;">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            var chatBox = document.getElementById('chat-box');
+
+            chatBox.innerHTML += "<div><b>You:</b> " + userInput + "</div>";
+
+            fetch('/chatbot/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    chatBox.innerHTML += "<div><b>Bot:</b> " + data.message + "</div>";
+                } else {
+                    chatBox.innerHTML += "<div><b>Bot:</b> Error occurred!</div>";
+                }
+                document.getElementById('user-input').value = '';
+                chatBox.scrollTop = chatBox.scrollHeight; // auto scroll down
+            });
+        }
+    </script>
+
+</body>
+</html>
