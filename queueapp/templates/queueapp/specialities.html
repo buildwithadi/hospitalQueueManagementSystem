@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Specialities</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .top-bar {
+            background: #ffd400;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            background-color: #ffffff;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 30px;
+        }
+
+        ul.specialities-list {
+            list-style: none;
+            padding: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        ul.specialities-list li {
+            background: #e8f5e9;
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 5px solid #28a745;
+        }
+
+        a.button-back {
+            display: block;
+            width: fit-content;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        a.button-back:hover {
+            background-color: #ffffff;
+            color: #003366;
+            border: 1px solid #003366;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div>Need Help? : 1800 889 7351</div>
+    <div>info.geims@geu.ac.in</div>
+</div>
+
+<div class="nav-bar">
+    <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
+    <div class="menu">
+        <a href="#">SPECIALITIES</a>
+        <a href="#">DOCTORS</a>
+        <a href="#">ACADEMICS</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Our Specialities</h1>
+    <ul class="specialities-list">
+        <li>Cardiology</li>
+        <li>Neurology</li>
+        <li>Orthopedics</li>
+        <li>Gastroenterology</li>
+        <li>Gynecology</li>
+        <li>Oncology</li>
+        <li>Urology</li>
+        <li>Dermatology</li>
+        <li>ENT (Ear, Nose, Throat)</li>
+    </ul>
+
+    <a href="{% url 'receptionist_panel' %}" class="button-back">Back</a>
+</div>
+
+</body>
+</html>
+
+
+
