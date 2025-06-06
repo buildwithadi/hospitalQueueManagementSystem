@@ -16,6 +16,9 @@ def specialities_view(request):
 def academics_view(request):
     return render(request, 'queueapp/academics.html')
 
+def doctor_find_view(request):
+    return render(request, 'queueapp/doctor_find.html')
+
 def doctors_view(request):
     return render(request, 'queueapp/doctors.html')
 # Receptionist Page - Add New Patient
@@ -154,6 +157,7 @@ def get_patient_priority(patient):
 
 
 import json
+import requests
 from django.http import JsonResponse
 
 def chatbot_api(request):
@@ -179,7 +183,7 @@ def chatbot_api(request):
         }
 
         # Call DeepSeek API
-        response = request.post(
+        response = requests.post(
             'https://api.deepseek.com/v1/chat/completions',
             headers={
                 'Authorization': 'Bearer sk-9458b6f75df44a42920f3435d03e7423',

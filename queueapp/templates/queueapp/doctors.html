@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +14,24 @@
     .menu a { text-decoration: none; color: black; font-weight: bold; }
     .buttons { display: flex; gap: 10px; }
     .button { padding: 10px 20px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
-    .appointment { background: #ffd400; }
-    .emergency { background: red; color: white; }
+    .appointment { display: inline-block;
+            margin: 30px auto;
+            text-decoration: none;
+            background-color:  #ffd400;
+            color: rgb(0, 0, 0);
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center; }
+    .emergency { display: inline-block;
+            margin: 30px auto;
+            text-decoration: none;
+            background-color:  red;
+            color: rgb(255, 255, 255);
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;}
 
     .page-header { padding: 30px; text-align: center; background: #f0f0f0; }
     .page-header h1 { margin: 0; font-size: 36px; }
@@ -26,7 +43,7 @@
 
     .doctors-section { padding: 40px 20px; }
     .doctors-section h2 { text-align: center; font-size: 30px; color: #0056a6; margin-bottom: 30px; }
-    .doctors-list { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+    .doctors-list { display: none; flex-wrap: wrap; gap: 20px; justify-content: center; }
     .doctor-card { background: white; width: 300px; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
     .doctor-card img { width: 150px; height: 150px; object-fit: cover; border-radius: 10px; }
     .doctor-name { font-weight: bold; color: #0056a6; font-size: 18px; margin-top: 15px; }
@@ -57,6 +74,17 @@
         transform: scale(1.1);
     }
 </style>
+<script>
+    function Change() {
+        const doctorsList = document.querySelector('.doctors-list');
+        if (doctorsList.style.display === 'none' || doctorsList.style.display === '') {
+            doctorsList.style.display = 'flex';
+        } else {
+            doctorsList.style.display = 'none';
+        }
+    }
+</script>
+
 </head>
 <body>
 
@@ -74,8 +102,8 @@
         <a href="{% url 'academics' %}">ACADEMICS</a>
     </div>
     <div class="buttons">
-        <button class="button appointment">BOOK AN APPOINTMENT</button>
-        <button class="button emergency">EMERGENCY 24x7</button>
+        <a class="appointment" href="{% url 'receptionist' %}">BOOK AN APPOINTMENT</a>
+        <a class="emergency" id='emer' href="{% url 'receptionist' %}?status=Emergency" class="button emergency">EMERGENCY 24x7</a>
     </div>
 </div>
 
@@ -83,59 +111,61 @@
     <h1>Doctors</h1>
     <div class="breadcrumbs">Graphic Era Hospital &gt; Doctors</div>
     <div class="page-buttons">
-        <button class="book">BOOK AN APPOINTMENT</button>
-        <button class="find">FIND A DOCTOR</button>
+        <a class="book-appointment" href="{% url 'receptionist' %}">BOOK AN APPOINTMENT</a>
+        <button class="find" onclick="Change()">FIND A DOCTOR</button>
+        
     </div>
 </div>
 
 <div class="doctors-section">
-    <h2>Doctors Available</h2>
+<h2>Doctors Available</h2>
     <div class="doctors-list">
 
         <div class="doctor-card">
-            <img src="WhatsApp Image 2025-04-01 at 22.31.41_749bb995.jpg" alt="Doctor 1">
+            
+            <img src="{% static 'Photo.jpg' %}" alt="Doctor 1">
             <div class="doctor-name">Dr. Krishna Pant</div>
             <div class="doctor-title">Medical Superintendent</div>
             <div class="doctor-specialty">Diarrhea Specialist</div>
             <div class="doctor-exp">Experience: 7 Years</div>
             <div class="card-buttons">
-                <button class="view-profile">View Profile</button>
+
                 <a class="book-appointment" href="{% url 'receptionist' %}?issue=Diarrhea">BOOK AN APPOINTMENT</a>
             </div>
         </div>
 
         <div class="doctor-card">
-            <img src="WhatsApp Image 2025-04-02 at 06.49.50_0ad61611.jpg" alt="Doctor 2">
+            <img src="{% static 'Ayus.jpg' %}" alt="Doctor 2">
             <div class="doctor-name">Dr. Ayush Kandari</div>
             <div class="doctor-title">Medical Director & Senior Consultant</div>
             <div class="doctor-specialty">Typhoid Specialist</div>
             <div class="doctor-exp">Experience: 5 Years</div>
             <div class="card-buttons">
-                <button class="view-profile">View Profile</button>
+
                 <a class="book-appointment" href="{% url 'receptionist' %}?issue=Typhoid">BOOK AN APPOINTMENT</a>
             </div>
         </div>
 
         <div class="doctor-card">
-            <img src="WhatsApp Image 2025-04-01 at 22.24.42_28a00b3b.jpg" alt="Doctor 3">
+            <img src="{% static 'Divyan.jpg' %}" alt="Doctor 3">
             <div class="doctor-name">Dr. Divyanshu Sharma</div>
             <div class="doctor-title">Director</div>
             <div class="doctor-specialty">Jaundice Specialist</div>
             <div class="doctor-exp">Experience: 2 Years</div>
             <div class="card-buttons">
-                <button class="view-profile">View Profile</button>
+              
 <a class="book-appointment" href="{% url 'receptionist' %}?issue=Jaundice">BOOK AN APPOINTMENT</a>
             </div>
         </div>
 
         <div class="doctor-card">
-            <img src="https://via.placeholder.com/150" alt="Doctor 4">
+            <img src="{% static 'Adi.jpg' %}" alt="Doctor 4">
             <div class="doctor-name">Dr. Aditya Rawat</div>
             <div class="doctor-title">Director</div>
             <div class="doctor-specialty">Neurosciences</div>
             <div class="doctor-exp">Experience: 2 Years</div>
             <div class="card-buttons">
-                <button class="view-profile">View Profile</button>
+
                 <a class="book-appointment" href="{% url 'receptionist' %}?issue=Migraine">BOOK AN APPOINTMENT</a>
             </div>
         </div>
