@@ -51,7 +51,6 @@ distro==1.9.0
 Django==4.2.20
 django-cors-headers==4.3.1
 django-crispy-forms==2.4
-dlib @ file:///C:/Users/Aditya/Downloads/Dlib-main/Dlib-main/dlib-19.22.99-cp39-cp39-win_amd64.whl
 dm-tree==0.1.8
 docker==7.1.0
 docutils==0.21.2
