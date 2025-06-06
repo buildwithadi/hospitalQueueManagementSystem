@@ -157,7 +157,6 @@ def get_patient_priority(patient):
 
 
 import json
-import requests
 from django.http import JsonResponse
 
 def chatbot_api(request):
@@ -183,7 +182,7 @@ def chatbot_api(request):
         }
 
         # Call DeepSeek API
-        response = requests.post(
+        response = request.post(
             'https://api.deepseek.com/v1/chat/completions',
             headers={
                 'Authorization': 'Bearer sk-9458b6f75df44a42920f3435d03e7423',
