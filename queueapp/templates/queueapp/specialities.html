@@ -105,9 +105,10 @@
 <div class="nav-bar">
     <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
     <div class="menu">
-        <a href="#">SPECIALITIES</a>
-        <a href="#">DOCTORS</a>
-        <a href="#">ACADEMICS</a>
+        <a href="{% url 'frontpage' %}">HOME</a>
+        <a href="{% url 'specialities' %}">SPECIALITIES</a>
+        <a href="{% url 'doctors' %}">DOCTORS</a>
+        <a href="{% url 'academics' %}">ACADEMICS</a>
     </div>
 </div>
 
@@ -125,7 +126,7 @@
         <li>ENT (Ear, Nose, Throat)</li>
     </ul>
 
-    <a href="{% url 'receptionist_panel' %}" class="button-back">Back</a>
+    <a href="{% url 'receptionist' %}" class="button-back">Back</a>
 </div>
 
 </body>

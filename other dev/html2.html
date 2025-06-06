@@ -21,29 +21,9 @@
         .hero-text p { font-size: 18px; margin-bottom: 30px; }
         .hero-buttons { display: flex; gap: 20px; }
         .hero-buttons button { padding: 10px 20px; font-size: 16px; border-radius: 5px; border: none; cursor: pointer; }
-        .book { display: inline-block;
-            margin: 30px auto;
-            text-decoration: none;
-            background-color:  #ffd400;
-            color: rgb(0, 0, 0);
-            padding: 12px 24px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;}
+        .book { background: #ffd400; }
         .book:hover{background: white;}
-        .know { display: inline-block;
-            margin: 30px auto;
-            text-decoration: none;
-            background-color:  #ffd400;
-            color: rgb(0, 0, 0);
-            padding: 12px 24px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center; }
-
-        .know:hover{
-            background: white;
-        }
+        .know { background: white; color: black; }
         .hero-image { flex: 1; text-align: center; }
         .hero-image img { max-width: 90%; height: auto; border-radius: 10px; }
         .floating-buttons { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; }
@@ -59,10 +39,6 @@
     button:hover {
         transform: scale(1.1);
     }
-    #emer{
-        background-color: red;
-        color: aliceblue;
-    }
 
     </style>
 </head>
@@ -76,13 +52,13 @@
 <div class="nav-bar">
     <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
     <div class="menu">
-        <a href="{% url 'specialities' %}">SPECIALITIES</a>
-        <a href="{% url 'doctors' %}">DOCTORS</a>
-        <a href="{% url 'academics' %}">ACADEMICS</a>
+        <a href="#">SPECIALITIES</a>
+        <a href="2ndpage.html">DOCTORS</a>
+        <a href="#">ACADEMICS</a>
     </div>
     <div class="buttons">
-        <a class="book" href="{% url 'receptionist' %}">BOOK AN APPOINTMENT</a>
-        <a class="book" id='emer' href="{% url 'receptionist' %}?status=Emergency" class="button emergency">EMERGENCY 24x7</a>
+        <button class="button appointment">BOOK AN APPOINTMENT</button>
+        <button class="button emergency">EMERGENCY 24x7</button>
     </div>
 </div>
 
@@ -91,8 +67,8 @@
         <h1>Ranked 1 for Best Hospital In North India</h1>
         <p>Get Expert Doctors And Advanced Treatments</p>
         <div class="hero-buttons">
-            <a class="book" href="{% url 'receptionist' %}">BOOK AN APPOINTMENT</a>
-            <a class="know" href="{% url 'knowmore' %}">KNOW MORE</a>
+            <button class="book">BOOK AN APPOINTMENT</button>
+            <button class="know">KNOW MORE</button>
         </div>
     </div>
     <br>

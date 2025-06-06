@@ -1,30 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Doctor Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            margin: 40px;
-            /* Add linear gradient background */
-            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            background: #f4f4f4;
+        }
+
+        .top-bar {
+            background: #ffd400;
+            padding: 10px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
+            font-size: 14px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-bar img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .appointment {
+            background: #ffd400;
+            color: black;
+        }
+
+        .emergency {
+            background: red;
+            color: white;
+        }
+
+        .container {
+            padding: 40px 20px;
         }
 
         h1 {
             text-align: center;
-            color: white;
+            color: #003366;
             margin-bottom: 30px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -36,7 +94,7 @@
         }
 
         th {
-            background-color: #007BFF;
+            background-color: #003366;
             color: white;
         }
 
@@ -45,7 +103,7 @@
         }
 
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #eef6ff;
         }
 
         button {
@@ -55,63 +113,133 @@
             padding: 8px 12px;
             cursor: pointer;
             border-radius: 4px;
+            font-weight: bold;
+            transition: transform 0.2s ease;
         }
 
         button:hover {
-            background-color: #218838;
+
+            transform: scale(1.05);
         }
 
-        a {
+        a.back {
             display: inline-block;
-            margin-top: 20px;
+            margin: 30px auto;
             text-decoration: none;
-            background-color: #17a2b8;
+            background-color: #003366;
             color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-align: center;
         }
 
-        a:hover {
-            background-color: #138496;
+        a.back:hover {
+            background-color: #002244;
+        }
+
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            th, td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            th::before, td::before {
+                position: absolute;
+                left: 10px;
+                width: 45%;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            tr {
+                margin-bottom: 20px;
+                border-bottom: 2px solid #ccc;
+            }
+
+            thead {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+
+<div class="top-bar">
+    <div>Need Help? : 1800 889 7351</div>
+    <div>info.geims@geu.ac.in</div>
+</div>
+
+<div class="nav-bar">
+    <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
+    <div class="menu">
+        <a href="{% url 'frontpage' %}">HOME</a>
+        <a href="{% url 'specialities' %}">SPECIALITIES</a>
+        <a href="{% url 'doctors' %}">DOCTORS</a>
+        <a href="{% url 'academics' %}">ACADEMICS</a>
+    </div>
+</div>
+
+<div class="container">
     <h1>Doctor Panel - Patient List</h1>
-    <table border="1">
-        <tr>
-            <th>Number</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Gender</th>
-            <th>Blood Group</th>
-            <th>Issue</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        {% for patient in patients %}
+
+    <table>
+        <thead>
             <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ patient.name }}</td>
-                <td>{{ patient.age }}</td>
-                <td>{{ patient.get_gender_display }}</td>
-                <td>{{ patient.blood_group }}</td>
-                <td>{{ patient.issue }}</td>
-                <td>{{ patient.get_status_display }}</td>
-                <td>
-                    <form method="POST" action="{% url 'mark_treated' patient.id %}">
-                        {% csrf_token %}
-                        <button type="submit">Mark as Treated</button>
-                    </form>
-                </td>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Blood Group</th>
+                <th>Issue</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Action</th>
             </tr>
-        {% empty %}
-            <tr>
-                <td colspan="8">No patients available.</td>
-            </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ patient.name }}</td>
+                    <td>{{ patient.age }}</td>
+                    <td>{{ patient.get_gender_display }}</td>
+                    <td>{{ patient.blood_group }}</td>
+                    <td>{{ patient.issue }}</td>
+                    <td>{{ patient.get_status_display }}</td>
+                    <td>
+    {% if patient.priority_score <= 5 %}
+        <span style="color:white; background:red; padding:5px 8px; border-radius:4px;">{{ patient.priority_score }}</span>
+    {% elif patient.priority_score <= 10 %}
+        <span style="color:black; background:orange; padding:5px 8px; border-radius:4px;">{{ patient.priority_score }}</span>
+    {% else %}
+        <span style="color:white; background:green; padding:5px 8px; border-radius:4px;">{{ patient.priority_score }}</span>
+    {% endif %}
+</td>
+
+                    <td>
+                        <form method="POST" action="{% url 'mark_treated' patient.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Mark as Treated</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="8">No patients available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    <br>
-    <a href="{% url 'receptionist' %}">Back to Receptionist</a>
+
+    <a class="back" href="{% url 'receptionist' %}">Back to Receptionist</a>
+</div>
+
 </body>
 </html>

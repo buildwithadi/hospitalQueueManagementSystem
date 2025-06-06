@@ -1,24 +1,165 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Add Patient</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .top-bar {
+            background: #ffd400;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: rgb(255, 255, 255);
+            box-shadow: 0 2px 5px rgba(156, 99, 99, 0.1);
+        }
+
+        .nav-bar img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .appointment {
+            background: #ffd400;
+        }
+
+        .emergency {
+            background: red;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        form {
+            background: white;
+            padding: 30px;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        input:hover, select:hover, textarea:hover {
+            transform: scale(1.05);
+        }
+
+        button[type="submit"] {
+            background-color: #ffd400;
+            color: black;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: transform 0.1s ease;
+        }
+
+        button[type="submit"]:hover {
+            transform: scale(1.1);
+            background-color: #ffd400;
+        }
+
+        a {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .hii{
+            background-color: #003366;
+        }
+        .hii:hover{
+            background-color: #002244;
+        }
+
+
+    </style>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const selects = document.querySelectorAll('select');
-    
+
             selects.forEach(select => {
                 select.addEventListener('change', function() {
                     if (this.value === "") {
-                        this.style.borderColor = '#ff6b6b'; // Red border
-                        this.style.backgroundColor = '#ffecec'; // Light red background
+                        this.style.borderColor = '#ff6b6b';
+                        this.style.backgroundColor = '#ffecec';
                     } else {
-                        this.style.borderColor = '#28a745'; // Green border
-                        this.style.backgroundColor = '#e8f5e9'; // Light green background
+                        this.style.borderColor = '#28a745';
+                        this.style.backgroundColor = '#e8f5e9';
                     }
                 });
-    
-                // Initialize colors on page load
+
                 if (select.value === "") {
                     select.style.borderColor = '#ff6b6b';
                     select.style.backgroundColor = '#ffecec';
@@ -29,111 +170,36 @@
             });
         });
     </script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 40px;
-            min-height: 100vh;
-            /* Linear gradient background */
-            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        form {
-            background: white;
-            padding: 30px;
-            max-width: 500px;
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        h1 {
-            text-align: center;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-
-    input, select, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        box-sizing: border-box;
-        font-size: 16px;
-        transition: transform 0.3s ease; /* Add transition here too */
-    }
-
-    input:hover, select:hover, textarea:hover {
-        transform: scale(1.05);
-    }
-        /* If input is empty (placeholder is showing) */
-        input:placeholder-shown, textarea:placeholder-shown {
-        border-color: #ff6b6b; /* Red border when empty */
-    }
-
-    /* If input has some value */
-    input:not(:placeholder-shown), textarea:not(:placeholder-shown) {
-        border-color: #28a745; /* Green border when filled */
-    }
-
-    input:hover, select:hover, textarea:hover {
-        transform: scale(1.05);
-    }
-
-
-        button {
-            background-color: #28a745;
-            color: white;
-            padding: 12px;
-            width: 100%;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 18px;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
-        a {
-            display: block;
-            width: fit-content;
-            margin: 30px auto;
-            padding: 10px 20px;
-            background-color: #17a2b8;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        a:hover {
-            background-color: #138496;
-        }
-    </style>
 </head>
 <body>
 
-<div>
-    <h1>Add Patient</h1>
+<div class="top-bar">
+    <div>Need Help? : 1800 889 7351</div>
+    <div>info.geims@geu.ac.in</div>
+</div>
+
+<div class="nav-bar">
+    <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
+   <div class="menu">
+        <a href="{% url 'frontpage' %}">HOME</a>
+        <a href="{% url 'specialities' %}">SPECIALITIES</a>
+        <a href="{% url 'doctors' %}">DOCTORS</a>
+        <a href="{% url 'academics' %}">ACADEMICS</a>
+    </div>
+
+</div>
+
+<div class="container">
     <form method="POST">
+        <h1>Add Patient</h1>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Add Patient</button>
     </form>
-    <a href="{% url 'patient_panel' %}">Go to Patient Panel</a>
-    <a href="{% url 'doctor_panel' %}">Go to Doctor Panel</a>
 </div>
+
+<a class="hii" href="{% url 'patient_panel' %}">Go to Patient Panel</a>
+<a class="hii" href="{% url 'doctor_panel' %}">Go to Doctor Panel</a>
 
 </body>
 </html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital - Know More</title>
+    
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .top-bar {
+            background: #ffd400;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-bar img {
+            height: 50px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            background-color: #ffffff;
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #003366;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: disc inside;
+            padding-left: 0;
+            font-size: 16px;
+        }
+
+        p, li {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #003366;
+            color: white;
+            margin-top: 40px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        a.button-back {
+            display: block;
+            width: fit-content;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        a.button-back:hover {
+            background-color: white;
+            color: #003366;
+            border: 1px solid #003366;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div>Need Help? : 1800 889 7351</div>
+    <div>info.geims@geu.ac.in</div>
+</div>
+
+<div class="nav-bar">
+    <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
+    <div class="menu">
+        <a href="{% url 'frontpage' %}">HOME</a>
+        <a href="{% url 'specialities' %}">SPECIALITIES</a>
+        <a href="{% url 'doctors' %}">DOCTORS</a>
+        <a href="{% url 'academics' %}">ACADEMICS</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Welcome to Our Hospital</h1>
+    <p style="text-align: center; font-size: 18px;">Excellence in Healthcare</p>
+
+    <section class="about">
+        <h2>About Us</h2>
+        <p>Our hospital has been a beacon of health, innovation, and care for over 50 years. We are committed to delivering world-class medical services to our community.</p>
+    </section>
+
+    <section class="achievements">
+        <h2>Achievements</h2>
+        <ul>
+            <li>Ranked among the top 10 hospitals nationally in 2024.</li>
+            <li>Accredited with the highest quality standards by NABH and JCI.</li>
+            <li>Over 1 million successful surgeries performed.</li>
+            <li>Pioneered groundbreaking research in cardiac treatments.</li>
+            <li>24/7 emergency services with a record 99% response rate.</li>
+        </ul>
+    </section>
+
+    <section class="facilities">
+        <h2>Facilities</h2>
+        <p>State-of-the-art operation theatres, advanced diagnostics, rehabilitation centers, and luxury patient suites.</p>
+    </section>
+
+    <a href="{% url 'receptionist' %}" class="button-back">Back</a>
+</div>
+
+
+<div class="footer">
+    &copy; 2025 Our Hospital. All rights reserved.
+</div>
+
+</body>
+</html>

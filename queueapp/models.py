@@ -15,6 +15,9 @@ class Patient(models.Model):
         ('Headache', 'Headache'),
         ('Fever', 'Fever'),
         ('Migraine', 'Migraine'),
+        ('Typhoid', 'Typhoid'),
+        ('Diarrhea', 'Diarrhea'),
+        ('Jaundice', 'Jaundice'),
         ('Other', 'Other'),
     ]
 

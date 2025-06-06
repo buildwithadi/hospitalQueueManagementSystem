@@ -35,15 +35,7 @@
     .card-buttons { margin-top: 15px; }
     .card-buttons button { margin: 5px; padding: 8px 15px; border-radius: 20px; border: none; font-weight: bold; cursor: pointer; }
     .view-profile { background: #e0f0ff; color: #0056a6; }
-    .book-appointment { display: inline-block;
-            margin: 30px auto;
-            text-decoration: none;
-            background-color:  #ffd400;
-            color: rgb(0, 0, 0);
-            padding: 12px 24px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center; }
+    .book-appointment { background: #ffd400; }
 
     @media (max-width: 768px) {
         .doctors-list { flex-direction: column; align-items: center; }
@@ -68,10 +60,10 @@
 <div class="nav-bar">
     <img src="https://geimshospital.com/wp-content/uploads/2024/12/logo.png" alt="Logo">
     <div class="menu">
-        <a href="{% url 'frontpage' %}">HOME</a>
-        <a href="{% url 'specialities' %}">SPECIALITIES</a>
-        <a href="{% url 'doctors' %}">DOCTORS</a>
-        <a href="{% url 'academics' %}">ACADEMICS</a>
+        <a href="Frontpage.html">HOME</a>
+        <a href="">SPECIALITIES</a>
+        <a href="">DOCTORS</a>
+        <a href="">ACADEMICS</a>
     </div>
     <div class="buttons">
         <button class="button appointment">BOOK AN APPOINTMENT</button>
@@ -96,11 +88,11 @@
             <img src="WhatsApp Image 2025-04-01 at 22.31.41_749bb995.jpg" alt="Doctor 1">
             <div class="doctor-name">Dr. Krishna Pant</div>
             <div class="doctor-title">Medical Superintendent</div>
-            <div class="doctor-specialty">Diarrhea Specialist</div>
+            <div class="doctor-specialty">Medical Administration</div>
             <div class="doctor-exp">Experience: 7 Years</div>
             <div class="card-buttons">
                 <button class="view-profile">View Profile</button>
-                <a class="book-appointment" href="{% url 'receptionist' %}?issue=Diarrhea">BOOK AN APPOINTMENT</a>
+                <button class="book-appointment">Book Appointment</button>
             </div>
         </div>
 
@@ -108,11 +100,11 @@
             <img src="WhatsApp Image 2025-04-02 at 06.49.50_0ad61611.jpg" alt="Doctor 2">
             <div class="doctor-name">Dr. Ayush Kandari</div>
             <div class="doctor-title">Medical Director & Senior Consultant</div>
-            <div class="doctor-specialty">Typhoid Specialist</div>
+            <div class="doctor-specialty">Respiratory Medicine</div>
             <div class="doctor-exp">Experience: 5 Years</div>
             <div class="card-buttons">
                 <button class="view-profile">View Profile</button>
-                <a class="book-appointment" href="{% url 'receptionist' %}?issue=Typhoid">BOOK AN APPOINTMENT</a>
+                <button class="book-appointment">Book Appointment</button>
             </div>
         </div>
 
@@ -120,11 +112,11 @@
             <img src="WhatsApp Image 2025-04-01 at 22.24.42_28a00b3b.jpg" alt="Doctor 3">
             <div class="doctor-name">Dr. Divyanshu Sharma</div>
             <div class="doctor-title">Director</div>
-            <div class="doctor-specialty">Jaundice Specialist</div>
+            <div class="doctor-specialty">Diabetes and Endocrinology</div>
             <div class="doctor-exp">Experience: 2 Years</div>
             <div class="card-buttons">
                 <button class="view-profile">View Profile</button>
-<a class="book-appointment" href="{% url 'receptionist' %}?issue=Jaundice">BOOK AN APPOINTMENT</a>
+                <button class="book-appointment">Book Appointment</button>
             </div>
         </div>
 
@@ -136,7 +128,7 @@
             <div class="doctor-exp">Experience: 2 Years</div>
             <div class="card-buttons">
                 <button class="view-profile">View Profile</button>
-                <a class="book-appointment" href="{% url 'receptionist' %}?issue=Migraine">BOOK AN APPOINTMENT</a>
+                <button class="book-appointment">Book Appointment</button>
             </div>
         </div>
 
